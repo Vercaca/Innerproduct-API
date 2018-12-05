@@ -6,4 +6,4 @@ if __name__ == '__main__':
         print('\n # {}'.format(i))
         myClient.run()
 
-    myClient.run('wrong.file')
+    myClient.run('wrong_filename.json')

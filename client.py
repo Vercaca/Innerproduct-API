@@ -40,7 +40,7 @@ class Client:
             return None
 
         if self.__response.ok:
-            ans = r.text
+            ans = self.__response.text
             print(ans)
         else:
             print('[error] Wrong responses of API.')
