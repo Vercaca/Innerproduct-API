@@ -26,11 +26,19 @@ class Client:
         self.show_response()
 
     def send_request(self):
-        r = requests.post("http://127.0.0.1:5000/innerproduct/", \
-                            json=self.__input)
-        self.__response = r
+        try:
+            r = requests.post("http://127.0.0.1:5000/innerproduct/", \
+                                json=self.__input)
+            self.__response = r
+        except requests.exceptions.ConnectionError as e:
+            print('[Error] API Connection error')
+            print(e)
+
 
     def show_response(self):
+        if self.__response is None:
+            return None
+
         if self.__response.ok:
             ans = r.text
             print(ans)
@@ -40,10 +48,4 @@ class Client:
 
 if __name__ == '__main__':
     myClient = Client()
-    myClient.run('dd')
-
-    # for i in range(10):
-    #     print('\n # {}'.format(i))
-    #     myClient.run()
-    #
-    # myClient.run('wrong.file')
+    myClient.run()
